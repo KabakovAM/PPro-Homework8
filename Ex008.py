@@ -19,10 +19,11 @@ def recursion_folder(csv_path):
         temp = ['Папка:', *folder_list[-1:], 'Родительская папка:', *folder_list[-2:-1], 'Размер вложеных файлов:', data_size]
         folder_data.append(temp.copy())
         temp.clear()
-    for i in range(len(folder_data)):
-        for k in range(len(folder_data)):
-            if folder_data[i][1] == folder_data[k][3]:
-                folder_data[i][5] += folder_data[k][5]
+    print(len(folder_data) - 1)
+    for i in range(len(folder_data) - 1 , -1, -1):
+        for k in range(len(folder_data) - 1, -1, -1):
+            if folder_data[i][3] == folder_data[k][1]:
+                folder_data[k][5] += folder_data[i][5]
     folder_data.extend(file_data)
     with (
         open ('recursion_folder.csv', 'w',encoding='utf-8') as data_input_csv,
